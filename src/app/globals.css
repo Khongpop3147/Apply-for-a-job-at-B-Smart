@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*
+ * โทนสีกลาง + สีแบรนด์ต่อบริษัท (--accent*, ตั้งค่าที่ <main style> ของแต่ละหน้า)
+ * เว็บนี้เป็นฟอร์มสาธารณะ ใช้ธีมสว่างอย่างเดียวเพื่อให้สีแบรนด์ตรง
+ */
+:root {
+  color-scheme: light;
+  --accent: #f7941d;
+  --accent-strong: #a84f00;
+  --accent-soft: #fff4e6;
+
+  --bg: #f6f5f3;
+  --surface: #ffffff;
+  --subtle: #f8f7f5;
+  --ink: #1c1917;
+  --muted: #57534e;
+  --faint: #a8a29e;
+  --line: #ebe8e4;
+  --line-strong: #d6d3d1;
+  --danger: #b91c1c;
+  --danger-soft: #fef2f2;
+}
+
+@theme inline {
+  --font-sans: var(--font-thai), ui-sans-serif, system-ui, sans-serif;
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+}
+
+@utility bg-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2357534e'%3E%3Cpath d='M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1.1rem;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
