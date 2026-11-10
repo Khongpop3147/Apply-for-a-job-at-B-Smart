@@ -10,8 +10,11 @@
 เว็บนี้**ไม่เก็บข้อมูลเอง** — ใบสมัครถูกส่งต่อเข้า **bsmart-erp** (โมดูล "ผู้สมัครงาน") แล้ว HR ดู/เปลี่ยนสถานะ/พิมพ์ใบสมัครใน ERP
 
 ```
-ผู้สมัคร ─▶ Vercel: /api/apply ──(x-api-key)──▶ ERP: POST /public/job-applications ─▶ Postgres + S3
-            ตรวจข้อมูลซ้ำ, ตรวจไฟล์                                        HR ดูที่เมนู "ผู้สมัครงาน"
+ผู้สมัคร ─▶ Vercel: /api/apply ──(x-api-key)──▶ หน้าเว็บ ERP: /api/public/job-applications
+            ตรวจข้อมูลซ้ำ, ตรวจไฟล์                    │ (private network ของ Railway)
+                                                       ▼
+                                     หลังบ้าน ERP: POST /public/job-applications ─▶ Postgres + bucket
+                                                                     HR ดูที่เมนู "ผู้สมัครงาน"
 ```
 
 ## ลิงก์สำหรับประกาศรับสมัคร
@@ -27,7 +30,7 @@ https://<โดเมน>/ngaedee?position=Content%20Creator
 
 | ตัวแปร | ที่ไหน | ค่า |
 |---|---|---|
-| `ERP_API_URL` | Vercel | URL ของ ERP backend บน Railway เช่น `https://xxx.up.railway.app` (ไม่มี `/` ท้าย) |
+| `ERP_API_URL` | Vercel | โดเมน**หน้าเว็บ** ERP + `/api` เช่น `https://bsmart-erp-frontend-production.up.railway.app/api` (ไม่มี `/` ท้าย) — หลังบ้าน ERP ไม่มีโดเมนสาธารณะ หน้าเว็บ ERP ส่งต่อให้ |
 | `JOB_APPLICATION_API_KEY` | Vercel **และ** Railway (ERP backend) | ค่าเดียวกันทั้งสองฝั่ง สร้างด้วย `openssl rand -hex 32` |
 
 ## Deploy ขึ้น Vercel
